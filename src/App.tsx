@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import PhysicsDice from '../lab/PhysicsDice'
 import '../lab/PhysicsDice.scss'
 import './App.css'
@@ -19,6 +19,8 @@ function App() {
     const [rollKey, setRollKey] = useState(0);
     const [results, setResults] = useState<number[]>([]);
     const [collisionVolume, setCollisionVolume] = useState(0.5);
+    const thumbnailCanvasRefs = useRef<(HTMLCanvasElement | null)[]>([]);
+    const [thumbnailCanvases, setThumbnailCanvases] = useState<(HTMLCanvasElement | null)[]>([]);
 
     const addDice = (sides: number) => {
         setDiceList([...diceList, {
@@ -46,6 +48,11 @@ function App() {
     const clearAll = () => {
         setDiceList([]);
         setResults([]);
+    useEffect(() => {
+        // Update thumbnail canvases when dice list changes
+        setThumbnailCanvases([...thumbnailCanvasRefs.current]);
+    }, [diceList.length]);
+
     };
 
     return (
@@ -96,6 +103,16 @@ function App() {
                                     <div className="dice-item-header">
                                         <h3>D{die.sides}</h3>
                                         <button onClick={() => removeDice(index)} className="btn btn-small btn-danger">×</button>
+                                    </div>
+
+                                    <div className="dice-preview">
+                                        <canvas 
+                                            ref={(el) => {
+                                                thumbnailCanvasRefs.current[index] = el;
+                                            }}
+                                            width={120}
+                                            height={120}
+                                        />
                                     </div>
 
                                     <div className="dice-controls">
@@ -174,6 +191,7 @@ function App() {
                                 collisionVolume={collisionVolume}
                                 onResults={setResults}
                                 results={results}
+                                thumbnailCanvases={thumbnailCanvases}
                             />
                         ) : (
                             <div className="preview-empty">
