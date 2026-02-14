@@ -52,7 +52,6 @@ function App() {
         <div className="app">
             <div className="app-header">
                 <h1>🎲 DavaloDice</h1>
-                <p>Physics-based 3D Dice Simulator</p>
             </div>
 
             <div className="app-container">
