@@ -75,6 +75,13 @@ body {
     width: 100%;
     aspect-ratio: 1 / 1;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.section-preview .preview-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
 }
 
 .section-add-dice {
