@@ -48,12 +48,12 @@ function App() {
     const clearAll = () => {
         setDiceList([]);
         setResults([]);
+    };
+
     useEffect(() => {
         // Update thumbnail canvases when dice list changes
         setThumbnailCanvases([...thumbnailCanvasRefs.current]);
     }, [diceList.length]);
-
-    };
 
     return (
         <div className="app">
@@ -106,7 +106,7 @@ function App() {
                                     </div>
 
                                     <div className="dice-preview">
-                                        <canvas 
+                                        <canvas
                                             ref={(el) => {
                                                 thumbnailCanvasRefs.current[index] = el;
                                             }}
