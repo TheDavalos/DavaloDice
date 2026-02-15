@@ -1183,7 +1183,12 @@ const PhysicsDice = ({
         };
 
         resize();
-        window.addEventListener('resize', resize);
+        
+        // Use ResizeObserver to watch container size changes (including aspect-ratio changes)
+        const resizeObserver = new ResizeObserver(() => {
+            resize();
+        });
+        resizeObserver.observe(container);
 
         createDiceSet(resolvedSides, diceMaterial);
 
@@ -1399,7 +1404,7 @@ const PhysicsDice = ({
         return () => {
             renderer.domElement.removeEventListener('pointerdown', handlePointerDown);
             renderer.domElement.removeEventListener('pointerup', handlePointerUp);
-            window.removeEventListener('resize', resize);
+            resizeObserver.disconnect();
             if (animationRef.current) cancelAnimationFrame(animationRef.current);
             clearDice();
             world.bodies.forEach((body) => world.removeBody(body));
