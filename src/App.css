@@ -272,20 +272,15 @@ input[type="range"]::-moz-range-thumb {
     }
 
     .controls-panel {
-        flex: 0 0 auto;
-        max-height: 40vh;
+        flex: 1;
+        max-height: none;
         overflow-y: auto;
         margin-bottom: 0;
         padding: 1rem;
     }
 
     .preview-panel {
-        flex: 0 0 auto;
-        height: 50vh;
-    }
-
-    .preview-container {
-        height: 100%;
+        display: none;
     }
 
     .section h2 {
