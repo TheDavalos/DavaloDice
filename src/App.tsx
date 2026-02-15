@@ -98,7 +98,7 @@ function App() {
 
                 <div className="section section-dice-list">
                     <h2>Your Dice ({diceList.length})</h2>
-                    
+
                     <div className="control-group">
                         <label>
                             Sound Volume: {Math.round(collisionVolume * 100)}%
