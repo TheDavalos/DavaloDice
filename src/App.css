@@ -266,10 +266,12 @@ input[type="range"]::-moz-range-thumb {
 
     .controls-panel {
         flex: 1;
-        max-height: none;
+        max-height: 60vh;
+        overflow-y: auto;
     }
 
     .preview-container {
         height: 500px;
+        min-height: 400px;
     }
 }
