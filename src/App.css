@@ -72,7 +72,8 @@ body {
     background: #0f172a;
     border-radius: 8px;
     overflow: hidden;
-    height: 700px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -337,7 +338,7 @@ input[type="range"]::-moz-range-thumb {
         gap: 1rem;
     }
 
-    .section-preview .preview-container {
+    .secaspect-ratio: 1 / 1.preview-container {
         height: 500px;
     }
 
