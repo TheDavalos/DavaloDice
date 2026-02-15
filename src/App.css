@@ -73,15 +73,16 @@ body {
     border-radius: 8px;
     overflow: hidden;
     width: 100%;
-    aspect-ratio: 1 / 1;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .section-preview .preview-container canvas {
-    width: 100% !important;
-    height: 100% !important;
     display: block;
+    max-width: 100%;
+    height: auto;
 }
 
 .section-add-dice {
@@ -343,10 +344,6 @@ input[type="range"]::-moz-range-thumb {
     .app-container-vertical {
         padding: 0.75rem;
         gap: 1rem;
-    }
-
-    .secaspect-ratio: 1 / 1.preview-container {
-        height: 500px;
     }
 
     .section h2 {

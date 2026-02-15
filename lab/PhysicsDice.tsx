@@ -1176,9 +1176,11 @@ const PhysicsDice = ({
 
         const resize = () => {
             if (!container) return;
-            const { clientWidth, clientHeight } = container;
-            renderer.setSize(clientWidth, clientHeight);
-            camera.aspect = clientWidth / clientHeight;
+            const { clientWidth } = container;
+            // Make it square based on width
+            const size = clientWidth || 800;
+            renderer.setSize(size, size);
+            camera.aspect = 1; // Keep it square
             camera.updateProjectionMatrix();
         };
 
