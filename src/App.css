@@ -180,6 +180,28 @@ body {
     font-size: 1.2rem;
 }
 
+.dice-preview-simple {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    background: #0f172a;
+    border-radius: 6px;
+    padding: 1.5rem;
+    height: 80px;
+    border: 3px solid currentColor;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dice-preview-simple .dice-label {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    z-index: 1;
+}
+
 .dice-preview {
     display: flex;
     justify-content: center;
@@ -272,15 +294,21 @@ input[type="range"]::-moz-range-thumb {
     }
 
     .controls-panel {
-        flex: 1;
-        max-height: none;
+        flex: 0 0 auto;
+        max-height: 40vh;
         overflow-y: auto;
         margin-bottom: 0;
         padding: 1rem;
     }
 
     .preview-panel {
-        display: none;
+        flex: 1;
+        min-height: 50vh;
+    }
+
+    .preview-container {
+        height: 100%;
+        min-height: 50vh;
     }
 
     .section h2 {
@@ -294,5 +322,9 @@ input[type="range"]::-moz-range-thumb {
     .btn {
         padding: 0.6rem 0.8rem;
         font-size: 0.9rem;
+    }
+
+    .dice-preview {
+        display: none;
     }
 }

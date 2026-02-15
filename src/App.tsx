@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState } from 'react'
 import PhysicsDice from '../lab/PhysicsDice'
 import '../lab/PhysicsDice.scss'
 import './App.css'
@@ -19,8 +19,6 @@ function App() {
     const [rollKey, setRollKey] = useState(0);
     const [results, setResults] = useState<number[]>([]);
     const [collisionVolume, setCollisionVolume] = useState(0.5);
-    const thumbnailCanvasRefs = useRef<(HTMLCanvasElement | null)[]>([]);
-    const [thumbnailCanvases, setThumbnailCanvases] = useState<(HTMLCanvasElement | null)[]>([]);
 
     const addDice = (sides: number) => {
         setDiceList([...diceList, {
@@ -49,11 +47,6 @@ function App() {
         setDiceList([]);
         setResults([]);
     };
-
-    useEffect(() => {
-        // Update thumbnail canvases when dice list changes
-        setThumbnailCanvases([...thumbnailCanvasRefs.current]);
-    }, [diceList.length]);
 
     return (
         <div className="app">
@@ -105,14 +98,8 @@ function App() {
                                         <button onClick={() => removeDice(index)} className="btn btn-small btn-danger">×</button>
                                     </div>
 
-                                    <div className="dice-preview">
-                                        <canvas
-                                            ref={(el) => {
-                                                thumbnailCanvasRefs.current[index] = el;
-                                            }}
-                                            width={120}
-                                            height={120}
-                                        />
+                                    <div className="dice-preview-simple" style={{ backgroundColor: die.color }}>
+                                        <span className="dice-label">D{die.sides}</span>
                                     </div>
 
                                     <div className="dice-controls">
@@ -196,7 +183,6 @@ function App() {
                         ) : (
                             <div className="preview-empty">
                                 <h2>👈 Add some dice to get started!</h2>
-                                <p>Click one of the "Add D#" buttons to add dice to the scene</p>
                             </div>
                         )}
                     </div>
