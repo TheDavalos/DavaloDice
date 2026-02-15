@@ -1183,7 +1183,7 @@ const PhysicsDice = ({
         };
 
         resize();
-        
+
         // Use ResizeObserver to watch container size changes (including aspect-ratio changes)
         const resizeObserver = new ResizeObserver(() => {
             resize();
