@@ -54,116 +54,13 @@ function App() {
                 <h1>🎲 DavaloDice</h1>
             </div>
 
-            <div className="app-container">
-                <div className="controls-panel">
-                    <div className="section">
-                        <h2>Add Dice</h2>
-                        <div className="dice-buttons">
-                            <button onClick={() => addDice(4)} className="btn btn-add">Add D4</button>
-                            <button onClick={() => addDice(6)} className="btn btn-add">Add D6</button>
-                            <button onClick={() => addDice(8)} className="btn btn-add">Add D8</button>
-                            <button onClick={() => addDice(10)} className="btn btn-add">Add D10</button>
-                            <button onClick={() => addDice(12)} className="btn btn-add">Add D12</button>
-                            <button onClick={() => addDice(20)} className="btn btn-add">Add D20</button>
-                        </div>
-                    </div>
-
-                    <div className="section">
-                        <h2>Dice Controls</h2>
-                        <button onClick={rollDice} className="btn btn-primary btn-large">🎲 Roll Dice</button>
-                        <button onClick={clearAll} className="btn btn-danger">Clear All</button>
-
-                        <div className="control-group">
-                            <label>
-                                Sound Volume: {Math.round(collisionVolume * 100)}%
-                                <input
-                                    type="range"
-                                    min="0"
-                                    max="1"
-                                    step="0.1"
-                                    value={collisionVolume}
-                                    onChange={(e) => setCollisionVolume(parseFloat(e.target.value))}
-                                />
-                            </label>
-                        </div>
-                    </div>
-
-                    <div className="section">
-                        <h2>Your Dice ({diceList.length})</h2>
-                        <div className="dice-list">
-                            {diceList.map((die, index) => (
-                                <div key={index} className="dice-item">
-                                    <div className="dice-item-header">
-                                        <h3>D{die.sides}</h3>
-                                        <button onClick={() => removeDice(index)} className="btn btn-small btn-danger">×</button>
-                                    </div>
-
-                                    <div className="dice-preview-simple" style={{ backgroundColor: die.color }}>
-                                        <span className="dice-label">D{die.sides}</span>
-                                    </div>
-
-                                    <div className="dice-controls">
-                                        <label>
-                                            Color:
-                                            <input
-                                                type="color"
-                                                value={die.color}
-                                                onChange={(e) => updateDice(index, { color: e.target.value })}
-                                            />
-                                        </label>
-
-                                        <label>
-                                            Roughness: {die.roughness.toFixed(1)}
-                                            <input
-                                                type="range"
-                                                min="0"
-                                                max="1"
-                                                step="0.1"
-                                                value={die.roughness}
-                                                onChange={(e) => updateDice(index, { roughness: parseFloat(e.target.value) })}
-                                            />
-                                        </label>
-
-                                        <label>
-                                            Metalness: {die.metalness.toFixed(1)}
-                                            <input
-                                                type="range"
-                                                min="0"
-                                                max="1"
-                                                step="0.1"
-                                                value={die.metalness}
-                                                onChange={(e) => updateDice(index, { metalness: parseFloat(e.target.value) })}
-                                            />
-                                        </label>
-
-                                        <label>
-                                            Text Color:
-                                            <input
-                                                type="color"
-                                                value={die.textColor}
-                                                onChange={(e) => updateDice(index, { textColor: e.target.value })}
-                                            />
-                                        </label>
-
-                                        <label>
-                                            Highlight Color:
-                                            <input
-                                                type="color"
-                                                value={die.highlightTextColor}
-                                                onChange={(e) => updateDice(index, { highlightTextColor: e.target.value })}
-                                            />
-                                        </label>
-                                    </div>
-                                </div>
-                            ))}
-                            {diceList.length === 0 && (
-                                <p className="empty-message">No dice added yet. Click "Add D6" or any other dice type to get started!</p>
-                            )}
-                        </div>
-                    </div>
+            <div className="app-container-vertical">
+                <div className="section section-roll">
+                    <button onClick={rollDice} className="btn btn-primary btn-large btn-roll">🎲 Roll Dice</button>
+                    <button onClick={clearAll} className="btn btn-danger btn-clear">Clear All</button>
                 </div>
 
-                <div className="preview-panel">
+                <div className="section section-preview">
                     <div className="preview-container">
                         {diceList.length > 0 ? (
                             <PhysicsDice
@@ -181,8 +78,109 @@ function App() {
                             />
                         ) : (
                             <div className="preview-empty">
-                                <h2>👈 Add some dice to get started!</h2>
+                                <h2>👇 Add some dice below to get started!</h2>
                             </div>
+                        )}
+                    </div>
+                </div>
+
+                <div className="section section-add-dice">
+                    <h2>Add Dice</h2>
+                    <div className="dice-buttons">
+                        <button onClick={() => addDice(4)} className="btn btn-add">Add D4</button>
+                        <button onClick={() => addDice(6)} className="btn btn-add">Add D6</button>
+                        <button onClick={() => addDice(8)} className="btn btn-add">Add D8</button>
+                        <button onClick={() => addDice(10)} className="btn btn-add">Add D10</button>
+                        <button onClick={() => addDice(12)} className="btn btn-add">Add D12</button>
+                        <button onClick={() => addDice(20)} className="btn btn-add">Add D20</button>
+                    </div>
+                </div>
+
+                <div className="section section-dice-list">
+                    <h2>Your Dice ({diceList.length})</h2>
+                    
+                    <div className="control-group">
+                        <label>
+                            Sound Volume: {Math.round(collisionVolume * 100)}%
+                            <input
+                                type="range"
+                                min="0"
+                                max="1"
+                                step="0.1"
+                                value={collisionVolume}
+                                onChange={(e) => setCollisionVolume(parseFloat(e.target.value))}
+                            />
+                        </label>
+                    </div>
+
+                    <div className="dice-list">
+                        {diceList.map((die, index) => (
+                            <div key={index} className="dice-item">
+                                <div className="dice-item-header">
+                                    <h3>D{die.sides}</h3>
+                                    <button onClick={() => removeDice(index)} className="btn btn-small btn-danger">×</button>
+                                </div>
+
+                                <div className="dice-preview-simple" style={{ backgroundColor: die.color }}>
+                                    <span className="dice-label">D{die.sides}</span>
+                                </div>
+
+                                <div className="dice-controls">
+                                    <label>
+                                        Color:
+                                        <input
+                                            type="color"
+                                            value={die.color}
+                                            onChange={(e) => updateDice(index, { color: e.target.value })}
+                                        />
+                                    </label>
+
+                                    <label>
+                                        Roughness: {die.roughness.toFixed(1)}
+                                        <input
+                                            type="range"
+                                            min="0"
+                                            max="1"
+                                            step="0.1"
+                                            value={die.roughness}
+                                            onChange={(e) => updateDice(index, { roughness: parseFloat(e.target.value) })}
+                                        />
+                                    </label>
+
+                                    <label>
+                                        Metalness: {die.metalness.toFixed(1)}
+                                        <input
+                                            type="range"
+                                            min="0"
+                                            max="1"
+                                            step="0.1"
+                                            value={die.metalness}
+                                            onChange={(e) => updateDice(index, { metalness: parseFloat(e.target.value) })}
+                                        />
+                                    </label>
+
+                                    <label>
+                                        Text Color:
+                                        <input
+                                            type="color"
+                                            value={die.textColor}
+                                            onChange={(e) => updateDice(index, { textColor: e.target.value })}
+                                        />
+                                    </label>
+
+                                    <label>
+                                        Highlight Color:
+                                        <input
+                                            type="color"
+                                            value={die.highlightTextColor}
+                                            onChange={(e) => updateDice(index, { highlightTextColor: e.target.value })}
+                                        />
+                                    </label>
+                                </div>
+                            </div>
+                        ))}
+                        {diceList.length === 0 && (
+                            <p className="empty-message">No dice added yet. Use the buttons above to add dice!</p>
                         )}
                     </div>
                 </div>
