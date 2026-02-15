@@ -178,7 +178,6 @@ function App() {
                                 collisionVolume={collisionVolume}
                                 onResults={setResults}
                                 results={results}
-                                thumbnailCanvases={thumbnailCanvases}
                             />
                         ) : (
                             <div className="preview-empty">
