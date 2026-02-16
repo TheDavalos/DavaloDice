@@ -73,6 +73,11 @@ function App() {
                             onResults={setResults}
                             results={results}
                         />
+                        {diceList.length === 0 && (
+                            <div className="empty-dice-overlay">
+                                <p>Add dice below to begin</p>
+                            </div>
+                        )}
                     </div>
                 </div>
 
