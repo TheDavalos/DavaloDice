@@ -71,18 +71,14 @@ body {
 .section-preview .preview-container {
     background: #0f172a;
     border-radius: 8px;
-    overflow: hidden;
     width: 100%;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
 }
 
 .section-preview .preview-container canvas {
     display: block;
-    max-width: 100%;
-    height: auto;
+    width: 100%;
 }
 
 .section-add-dice {
