@@ -13,9 +13,7 @@ type DiceConfig = {
 }
 
 function App() {
-    const [diceList, setDiceList] = useState<DiceConfig[]>([
-        { sides: 6, color: '#ff4444', roughness: 0.5, metalness: 0.1, textColor: '#ffffff', highlightTextColor: '#ffff00' }
-    ]);
+    const [diceList, setDiceList] = useState<DiceConfig[]>([]);
     const [rollKey, setRollKey] = useState(0);
     const [results, setResults] = useState<number[]>([]);
     const [collisionVolume, setCollisionVolume] = useState(0.5);
@@ -62,25 +60,19 @@ function App() {
 
                 <div className="section section-preview">
                     <div className="preview-container">
-                        {diceList.length > 0 ? (
-                            <PhysicsDice
-                                diceSides={diceList.map(d => d.sides)}
-                                diceCount={diceList.length}
-                                diceColors={diceList.map(d => d.color)}
-                                diceRoughnesses={diceList.map(d => d.roughness)}
-                                diceMetalnesses={diceList.map(d => d.metalness)}
-                                textColors={diceList.map(d => d.textColor)}
-                                highlightTextColors={diceList.map(d => d.highlightTextColor)}
-                                rollKey={rollKey}
-                                collisionVolume={collisionVolume}
-                                onResults={setResults}
-                                results={results}
-                            />
-                        ) : (
-                            <div className="preview-empty">
-                                <h2>👇 Add some dice below to get started!</h2>
-                            </div>
-                        )}
+                        <PhysicsDice
+                            diceSides={diceList.map(d => d.sides)}
+                            diceCount={diceList.length}
+                            diceColors={diceList.map(d => d.color)}
+                            diceRoughnesses={diceList.map(d => d.roughness)}
+                            diceMetalnesses={diceList.map(d => d.metalness)}
+                            textColors={diceList.map(d => d.textColor)}
+                            highlightTextColors={diceList.map(d => d.highlightTextColor)}
+                            rollKey={rollKey}
+                            collisionVolume={collisionVolume}
+                            onResults={setResults}
+                            results={results}
+                        />
                     </div>
                 </div>
 
